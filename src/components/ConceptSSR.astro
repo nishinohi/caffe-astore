@@ -1,0 +1,118 @@
+---
+// SEO最適化版 - サーバーサイドレンダリング重視
+---
+
+<section
+  id="concept-section"
+  class="concept-parallax relative flex min-h-screen items-center justify-center overflow-hidden"
+>
+  <!-- 背景オーバーレイ -->
+  <div class="absolute inset-0 bg-black/40"></div>
+
+  <!-- コンテンツ - 初期状態で表示（SEO対応） -->
+  <div class="relative z-10 mx-auto max-w-4xl px-6 text-center">
+    <div class="concept-content">
+      <!-- Modern Classic タイトル -->
+      <h2
+        class="concept-title font-josefin mb-8 text-4xl font-light tracking-widest text-white md:text-6xl lg:text-7xl"
+      >
+        Modern Classic
+      </h2>
+
+      <!-- コンセプト文 -->
+      <div class="concept-text">
+        <p class="text-lg leading-relaxed font-light text-white/90 md:text-xl lg:text-2xl">
+          伝統的なイタリアンバールの文化を大切にしながら、<br />
+          現代的な感性で再解釈したカフェ体験を。<br />
+          <br />
+          厳選されたコーヒー豆から生まれる極上の一杯と、<br />
+          クラフトカクテル、そして心を込めて作るデザート。<br />
+          <br />
+          ここでしか味わえない、唯一無二のひとときをお届けします。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .concept-parallax {
+    background-image: url('/caffe-astore/assets/others/menu-book.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+
+  /* 初期状態は表示（SEO/アクセシビリティ重視） */
+  .concept-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Progressive Enhancement - JSが有効な場合のみ適用 */
+  .js-enabled .concept-content {
+    opacity: 0;
+    transform: translateY(4rem);
+    transition: all 1s ease-out;
+  }
+
+  .js-enabled .concept-content.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .js-enabled .concept-text {
+    transition: all 1s ease-out 0.3s;
+    opacity: 0;
+    transform: translateY(2rem);
+  }
+
+  .js-enabled .concept-content.animate-in .concept-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* モバイルではパララックス無効（パフォーマンス配慮） */
+  @media (max-width: 768px) {
+    .concept-parallax {
+      background-attachment: scroll;
+    }
+  }
+</style>
+
+<script>
+  // Progressive Enhancement - 軽量なスクロール検知
+  document.documentElement.classList.add('js-enabled')
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelector('.concept-content')?.classList.add('animate-in')
+          observer.unobserve(entry.target) // 一度のみ実行
+        }
+      })
+    },
+    {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px',
+    },
+  )
+
+  const section = document.getElementById('concept-section')
+  if (section) observer.observe(section)
+</script>
+
+<!-- noscript フォールバック -->
+<noscript>
+  <style>
+    .concept-content {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+    .concept-text {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+  </style>
+</noscript>
