@@ -1,4 +1,6 @@
 {
+  "name": "Espresso",
+  "nameTranslateJp": "エスプレッソ",
   "description": "厳選されたアラビカ種豆を使用した本格的なイタリアンエスプレッソ。濃厚なコクとクリーマの甘い香りが特徴的な、バールの定番メニューです。",
   "ingredients": [
     {

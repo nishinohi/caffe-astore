@@ -1,4 +1,6 @@
 {
+  "name": "Milk Latte",
+  "nameTranslateJp": "ミルクラッテ",
   "description": "北海道産の新鮮なミルクを丁寧にスチームしたシルクのような口当たり。エスプレッソとの完璧なバランスが楽しめるクラシックなカフェラッテです。",
   "ingredients": [
     {

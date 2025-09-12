@@ -1,4 +1,6 @@
 {
+  "name": "Original Drink",
+  "nameTranslateJp": "オリジナルドリンク",
   "description": "シェフが厳選したプレミアムスピリッツとエスプレッソを組み合わせた当店オリジナルカクテル。大人のための上質な時間を演出する特別な一杯です。",
   "ingredients": [
     {

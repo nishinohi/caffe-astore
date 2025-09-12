@@ -3,6 +3,8 @@ import { readdir, stat } from 'fs/promises'
 import { join } from 'path'
 
 export interface MenuItemData {
+  name: string
+  nameTranslateJp: string
   description: string
   ingredients: {
     name: string
