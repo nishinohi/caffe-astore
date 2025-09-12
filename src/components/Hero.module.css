@@ -3,14 +3,7 @@
   opacity: 0;
   filter: blur(12px);
   transform: translateY(32px) scale(0.95);
-  animation: logoReveal 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
-}
-
-.heroSubtitleEnter {
-  opacity: 0;
-  filter: blur(6px);
-  transform: translateY(20px);
-  animation: subtitleReveal 2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s forwards;
+  animation: logoReveal 2.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
 }
 
 .heroScrollEnter {
@@ -23,25 +16,12 @@
   0% {
     opacity: 0;
     filter: blur(12px);
-    transform: translateY(32px) scale(0.95);
+    transform: scale(0.95);
   }
   100% {
     opacity: 1;
     filter: blur(0px);
     transform: translateY(0px) scale(1);
-  }
-}
-
-@keyframes subtitleReveal {
-  0% {
-    opacity: 0;
-    filter: blur(6px);
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateY(0px);
   }
 }
 
