@@ -4,11 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
-- `pnpm dev` - Start development server at localhost:4321
+- `pnpm dev` - Start development server (typically localhost:4321, may use next available port)
 - `pnpm build` - Build production site to ./dist/
 - `pnpm preview` - Preview build locally
 - `pnpm format` - Format code with Prettier
 - `pnpm format:check` - Check code formatting
+- `pnpm astro check` - Run TypeScript type checking
 
 ## Project Architecture
 
@@ -29,9 +30,11 @@ This is an Astro-based café website with the following key components:
 ### File Structure
 
 - `src/pages/` - Astro pages (currently single index.astro homepage)
+- `src/components/` - React components (Hero.tsx, Concept.tsx, Menu.tsx) and Astro components (ConceptSSR.astro)
+- `src/components/ui/` - shadcn/ui components (carousel.tsx)
 - `src/lib/` - Utility functions (cn helper for Tailwind classes)
-- `src/styles/` - Global CSS with Tailwind imports
-- `public/` - Static assets (favicon, images)
+- `src/styles/` - Global CSS with Tailwind imports and custom font configurations
+- `public/assets/` - Static assets organized by type (logo, menu, others)
 
 ### Configuration Details
 
@@ -45,3 +48,18 @@ This is an Astro-based café website with the following key components:
 - Site configured for `https://nishinohi.github.io/caffe-astore`
 - Uses pnpm as package manager (locked to v10.12.1)
 - TypeScript paths configured for `@/` alias pointing to `./src/`
+
+### Component Architecture
+
+- **Astro Components**: Server-side rendered components (`.astro` files)
+- **React Components**: Interactive client-side components (`.tsx` files)
+- **CSS Modules**: Used alongside Tailwind for component-specific styles (e.g., `Hero.module.css`)
+- **Client Directives**: Use `client:load` for React components that need hydration
+
+### Styling System
+
+- **Primary Fonts**: Noto Sans JP (Japanese), Josefin Sans (English)
+- **Tailwind v4**: Uses new @theme inline syntax in global.css
+- **shadcn/ui**: Configured with "new-york" style and neutral base color
+- **CSS Custom Properties**: Extensive theme system with dark mode support
+- **Asset Paths**: All public assets must include `/caffe-astore/` base path prefix
