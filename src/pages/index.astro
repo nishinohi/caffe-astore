@@ -1,55 +1,18 @@
 ---
-import '../styles/global.css';
+import '../styles/global.css'
+import Hero from '../components/Hero'
 ---
 
 <html lang="ja">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content="素敵なカフェで美味しいコーヒーと心地よいひとときをお過ごしください。" />
-		<title>Cafe A-Store - 心地よいカフェタイム</title>
-	</head>
-	<body class="min-h-screen bg-gray-50 text-gray-800">
-		<header class="bg-gradient-to-br from-amber-800 to-amber-700 text-white text-center py-8 px-4">
-			<h1 class="text-4xl md:text-5xl font-bold mb-2">☕ Cafe A-Store</h1>
-			<p class="text-xl opacity-90">心地よいカフェタイムをあなたに</p>
-		</header>
-		
-		<main class="max-w-6xl mx-auto px-4 py-8">
-			<section class="text-center mb-12">
-				<h2 class="text-3xl md:text-4xl font-bold text-amber-800 mb-4">おいしいコーヒーと素敵な時間</h2>
-				<p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">厳選された豆から淹れる香り高いコーヒーと、居心地の良い空間で、特別なひとときをお過ごしください。</p>
-			</section>
-			
-			<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-				<div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-					<h3 class="text-2xl font-semibold text-amber-800 mb-4">🌟 厳選コーヒー豆</h3>
-					<p class="text-gray-600">世界各地から厳選した高品質なコーヒー豆を使用し、一杯一杯丁寧に淹れています。</p>
-				</div>
-				
-				<div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300">
-					<h3 class="text-2xl font-semibold text-amber-800 mb-4">🥐 手作りペストリー</h3>
-					<p class="text-gray-600">毎日店内で焼き上げる新鮮なペストリーとスイーツをお楽しみいただけます。</p>
-				</div>
-				
-				<div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow duration-300 md:col-span-2 lg:col-span-1">
-					<h3 class="text-2xl font-semibold text-amber-800 mb-4">📚 落ち着いた空間</h3>
-					<p class="text-gray-600">読書や勉強、お友達との会話など、様々な用途でご利用いただける快適な空間です。</p>
-				</div>
-			</section>
-			
-			<section class="bg-gradient-to-br from-amber-800 to-amber-700 text-white p-8 md:p-12 rounded-lg text-center">
-				<h3 class="text-2xl md:text-3xl font-bold mb-4">ぜひお越しください</h3>
-				<p class="text-lg mb-8 opacity-90 max-w-xl mx-auto">心温まるコーヒータイムを、私たちと一緒に過ごしませんか？</p>
-				<a href="#contact" class="inline-block bg-white text-amber-800 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transform hover:-translate-y-0.5 transition-all duration-200 shadow-lg">お店の情報を見る</a>
-			</section>
-		</main>
-		
-		<footer class="bg-gray-800 text-white text-center py-8 mt-12">
-			<p class="mb-2">&copy; 2024 Cafe A-Store. All rights reserved.</p>
-			<p class="text-gray-300">📍 東京都 | ☎️ 03-1234-5678 | 🕒 8:00-20:00</p>
-		</footer>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/caffe-astore/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Caffè Astore モダンなクラシック ここでしか味わえない唯一無二の体験" />
+    <title>Caffè Astore</title>
+  </head>
+  <body class="min-h-screen">
+    <Hero />
+  </body>
 </html>
