@@ -1,27 +1,7 @@
 import type { CarouselApi } from '@/components/ui/carousel'
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import type { MenuCategory, MenuItemData } from '@/pages/api/menu-structure.json'
 import { useEffect, useState } from 'react'
-
-interface MenuItemData {
-  description: string
-  ingredients: {
-    name: string
-    description?: string
-  }[]
-}
-
-interface MenuItem {
-  id: string
-  name: string
-  image: string
-  data?: MenuItemData
-}
-
-interface MenuCategory {
-  id: string
-  name: string
-  items: MenuItem[]
-}
 
 export default function Menu() {
   const [menuCategories, setMenuCategories] = useState<MenuCategory[]>([])
@@ -34,7 +14,6 @@ export default function Menu() {
 
   const currentCategory = menuCategories[selectedCategory]
   const currentItem = currentCategory?.items[selectedItem]
-  const isMenuCategoriesExit = menuCategories.length > 0
 
   // Load menu structure on component mount
   useEffect(() => {
@@ -110,126 +89,126 @@ export default function Menu() {
   }
 
   return (
-    <section className="min-h-screen py-20">
-      <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-16 text-center">
-          <h2 className="font-josefin mb-8 text-3xl md:mb-16 md:text-4xl">Menu</h2>
-          {isLoadingStructure && (
-            <div className="flex justify-center">
-              <span className="relative flex size-6">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neutral-400 opacity-75"></span>
-                <p className="sr-only">メニューを準備しています</p>
-              </span>
-            </div>
-          )}
-          {menuCategories.length === 0 && (
-            <div className="flex justify-center">
-              <p className="font-josefin text-muted-foreground">メニューを準備中です</p>
-              <p className="sr-only">メニューの読み込みに失敗しました</p>
-            </div>
-          )}
-          <div className="flex justify-center space-x-6 md:space-x-12">
-            {menuCategories.map((category, index) => (
+    <section className="mx-auto min-h-screen max-w-7xl px-4 py-20">
+      <div className="mb-16 text-center">
+        <h2 className="font-josefin mb-8 text-3xl md:mb-16 md:text-4xl">Menu</h2>
+        {isLoadingStructure && (
+          <div className="flex justify-center">
+            <span className="relative flex size-6">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-neutral-400 opacity-75"></span>
+              <p className="sr-only">メニューを準備しています</p>
+            </span>
+          </div>
+        )}
+        {menuCategories.length === 0 && (
+          <div className="flex justify-center">
+            <p className="font-josefin text-muted-foreground">メニューを準備中です</p>
+            <p className="sr-only">メニューの読み込みに失敗しました</p>
+          </div>
+        )}
+        <div className="flex justify-center space-x-6 md:space-x-12">
+          {menuCategories.map((category, index) => (
+            <button
+              key={category.id}
+              onClick={() => handleCategoryChange(index)}
+              className={`font-josefin border-b-2 text-lg transition-colors duration-300 md:text-xl lg:text-2xl ${
+                selectedCategory === index ? 'border-foreground' : 'hover:border-foreground border-transparent'
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Menu Content */}
+      <div className="grid gap-12 md:grid-cols-2 md:items-center">
+        {/* Image Carousel */}
+        <div className="relative">
+          <Carousel
+            setApi={setApi}
+            className="mx-auto w-full md:max-w-sm lg:max-w-md"
+            opts={{
+              align: 'start',
+              loop: true,
+            }}
+          >
+            <CarouselContent>
+              {currentCategory?.items.map((item, index) => (
+                <CarouselItem key={item.id}>
+                  <div className="aspect-square overflow-hidden rounded-4xl">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="h-full w-full object-cover transition-transform duration-700 hover:scale-103"
+                      loading="lazy"
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute top-1/2 left-3 hidden h-12 w-12 -translate-y-1/2 border-none bg-white/40 backdrop-blur-sm hover:bg-white/50 md:inline-flex" />
+            <CarouselNext className="absolute top-1/2 right-3 hidden h-12 w-12 -translate-y-1/2 border-none bg-white/40 backdrop-blur-sm hover:bg-white/50 md:inline-flex" />
+          </Carousel>
+          {/* Slide Indicators */}
+          <div className="flex justify-center space-x-2 pt-4 md:hidden">
+            {currentCategory?.items.map((_, index) => (
               <button
-                key={category.id}
-                onClick={() => handleCategoryChange(index)}
-                className={`font-josefin border-b-2 text-lg transition-colors duration-300 md:text-xl lg:text-2xl ${
-                  selectedCategory === index ? 'border-foreground' : 'hover:border-foreground border-transparent'
+                key={index}
+                onClick={() => api?.scrollTo(index)}
+                className={`h-2 w-2 rounded-full transition-colors duration-300 ${
+                  selectedItem === index ? 'bg-neutral-500' : 'bg-neutral-300 hover:bg-neutral-400'
                 }`}
-              >
-                {category.name}
-              </button>
+              />
             ))}
           </div>
         </div>
 
-        {/* Menu Content */}
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          {/* Image Carousel */}
-          <div className="relative">
-            <Carousel
-              setApi={setApi}
-              className="mx-auto w-full max-w-md"
-              opts={{
-                align: 'start',
-                loop: true,
-              }}
-            >
-              <CarouselContent>
-                {currentCategory?.items.map((item, index) => (
-                  <CarouselItem key={item.id}>
-                    <div className="aspect-square overflow-hidden rounded-2xl bg-stone-100 shadow-xl">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              <CarouselPrevious className="absolute top-1/2 left-4 h-12 w-12 -translate-y-1/2 border-2 border-white bg-white/90 shadow-lg backdrop-blur-sm hover:bg-white" />
-              <CarouselNext className="absolute top-1/2 right-4 h-12 w-12 -translate-y-1/2 border-2 border-white bg-white/90 shadow-lg backdrop-blur-sm hover:bg-white" />
-            </Carousel>
+        {/* Description */}
+        <div className="flex flex-col space-y-6 py-4 md:h-full lg:space-y-8">
+          {/* Title */}
+          <div className="space-y-2">
+            <h3 className="font-josefin font text-2xl">{menuData?.name}</h3>
+            <p className="font-josefin text-base">{menuData?.nameTranslateJp}</p>
           </div>
 
-          {/* Description */}
-          <div className="space-y-6">
-            {/* Title */}
-            <div className="space-y-2">
-              <h3 className="font-josefin text-3xl font-bold">{currentItem?.name}</h3>
-              <p className="font-josefin text-lg">{currentItem?.name}</p>
+          {/* Description Content */}
+          <div className="relative md:grow">
+            {/* Loading State */}
+            <div
+              className={`absolute inset-0 flex flex-col items-center justify-center space-y-3 transition-opacity duration-500 ${isLoading ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+            >
+              <div className="h-6 w-6 animate-pulse rounded-full bg-neutral-500"></div>
+              <p className="sr-only">詳細を読み込み中</p>
             </div>
 
-            {/* Description Content */}
-            <div className={`space-y-6 transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+            {/* Content */}
+            <div
+              className={`flex flex-col space-y-10 transition-opacity duration-500 md:h-full md:justify-between ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+            >
               {menuData && (
                 <>
                   {/* Main Description */}
-                  <div className="space-y-4">
-                    <p className="leading-relaxed">{menuData.description}</p>
-                  </div>
-
+                  <p className="leading-loose">{menuData.description}</p>
                   {/* Ingredients */}
                   {menuData.ingredients && menuData.ingredients.length > 0 && (
-                    <div className="space-y-4">
-                      <h4 className="font-medium">材料・特徴</h4>
-                      <ul className="space-y-2">
+                    <section className="border-foreground relative rounded-md border pt-5 pr-6 pb-4 pl-8">
+                      <h3 className="bg-background absolute -top-3.5 left-4 inline-block px-2 text-base">
+                        Ingredients
+                      </h3>
+                      <ul className="space-y-1.5">
                         {menuData.ingredients.map((ingredient, index) => (
-                          <li key={index} className="flex items-start space-x-2">
-                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-600"></span>
-                            <div>
-                              <span className="font-medium">{ingredient.name}</span>
-                              {ingredient.description && <span className="ml-2">- {ingredient.description}</span>}
-                            </div>
+                          <li key={index} className="flex items-center space-x-2">
+                            <span className="size-1 flex-shrink-0 rounded-full bg-neutral-600"></span>
+                            <span className="text-sm">{ingredient.name}</span>
+                            {/* {ingredient.description && <span className="ml-2">- {ingredient.description}</span>} */}
                           </li>
                         ))}
                       </ul>
-                    </div>
+                    </section>
                   )}
                 </>
               )}
-
-              {!menuData && !isLoading && (
-                <div className="flex flex-col items-center space-y-3 py-6">
-                  <div className="h-6 w-6 animate-pulse rounded-full bg-amber-500"></div>
-                  <p className="font-josefin text-sm">詳細を読み込み中</p>
-                </div>
-              )}
-            </div>
-
-            {/* Slide Indicators */}
-            <div className="flex justify-center space-x-2 pt-4">
-              {currentCategory?.items.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => api?.scrollTo(index)}
-                  className={`h-2 w-2 rounded-full transition-colors duration-300 ${
-                    selectedItem === index ? 'bg-amber-600' : 'bg-stone-300 hover:bg-stone-400'
-                  }`}
-                />
-              ))}
             </div>
           </div>
         </div>

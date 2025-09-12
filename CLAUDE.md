@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `pnpm preview` - Preview build locally
 - `pnpm format` - Format code with Prettier
 - `pnpm format:check` - Check code formatting
-- `pnpm astro check` - Run TypeScript type checking
+- `pnpm astro check` - Run Astro diagnostics and TypeScript type checking
 
 ## Project Architecture
 

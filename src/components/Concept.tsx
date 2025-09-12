@@ -56,7 +56,7 @@ export default function Concept() {
               isVisible ? 'translate-y-0 opacity-100' : 'translate-y-16 opacity-0'
             }`}
           >
-            <p className="text-base leading-9 font-light text-white/90 md:text-xl md:leading-12 lg:text-2xl lg:leading-16">
+            <p className="text-base leading-9 text-white/90 md:text-xl md:leading-12 lg:text-2xl lg:leading-16">
               厳選した豆から抽出するエスプレッソ。
               <br />
               イタリアンバールの伝統を受け継ぎながら
