@@ -4,6 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Commands
 
+- `pnpm install` - Install dependencies
 - `pnpm dev` - Start development server (typically localhost:4321, may use next available port)
 - `pnpm build` - Build production site to ./dist/
 - `pnpm preview` - Preview build locally
@@ -63,3 +64,17 @@ This is an Astro-based café website with the following key components:
 - **shadcn/ui**: Configured with "new-york" style and neutral base color
 - **CSS Custom Properties**: Extensive theme system with dark mode support
 - **Asset Paths**: All public assets must include `/caffe-astore/` base path prefix
+
+### Menu System
+
+- Menu items are stored as JSON files in `public/assets/menu/` with structured data (name, description, price, image)
+- Categories include: caffe, cocktail, dolce, mocktail
+- Each item has both .jpeg image and .json metadata file
+- API endpoint at `src/pages/api/menu-structure.json.ts` provides structured menu data
+
+### Performance Optimizations
+
+- **Progressive Enhancement**: ConceptSSR.astro demonstrates SEO-first approach with JavaScript enhancements
+- **Image Optimization**: Hero section uses eager loading for above-fold content
+- **Mobile Considerations**: Parallax effects disabled on mobile for better performance
+- **Accessibility**: Fallbacks provided via noscript tags
