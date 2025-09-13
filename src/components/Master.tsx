@@ -10,13 +10,13 @@ export default function Master() {
         <img
           className="aspect-[1/1] max-h-96 w-10/12 rounded-r-full object-cover object-top md:aspect-[2/1] md:max-h-[30rem] md:w-10/12 md:max-w-7xl"
           src="/caffe-astore/assets/others/master.jpeg"
-          alt="オーナー紹介写真"
+          alt="オーナー岡本高明の写真"
         />
         <div className="space-y-8 px-4 text-white/90 md:space-y-10 md:px-10 lg:space-y-12">
-          <div>
+          <header>
             <h2 className="font-josefin text-2xl md:text-3xl">Takaaki Okamoto</h2>
-            <h3 className="text-lg md:text-xl">岡本高明</h3>
-          </div>
+            <p className="text-lg md:text-xl">岡本高明</p>
+          </header>
           <p className="max-w-2xl text-lg leading-[2] md:text-xl">
             エスプレッソの美味しさに魅了されイタリアのカフェ文化に強い関心を抱くようになったという。
             <br />

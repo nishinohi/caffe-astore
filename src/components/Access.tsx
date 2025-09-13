@@ -11,7 +11,7 @@ export default function Access() {
           alt="Caffè Astore 店内写真"
         />
 
-        <div className="flex flex-col items-center space-y-4">
+        <address className="flex flex-col items-center space-y-4 not-italic">
           <Logo className="text-foreground h-auto w-48 max-w-[90vw]" />
           <p className="text-base md:text-lg">
             <span className="pr-2">カフェ</span>アストーレ
@@ -20,29 +20,34 @@ export default function Access() {
             href="https://maps.app.goo.gl/ZYWGP86SaL5MYLUKA"
             className="inline-flex items-center border-b border-neutral-400 pb-1 text-base transition-colors hover:border-neutral-800 md:text-lg"
             target="_blank"
+            rel="noopener noreferrer"
           >
             大阪府中央区玉造2-1-3
           </a>
           <p className="text-base md:text-lg">
-            12:00 〜 20:00<span className="px-4">/</span>日・月<span className="pl-4">定休</span>
+            <time>12:00 〜 20:00</time><span className="px-4">/</span>日・月<span className="pl-4">定休</span>
           </p>
-          <div className="flex flex-col gap-4 pt-6 md:flex-row md:gap-6">
-            <a
-              href="https://note.com/caffeastore"
-              className="inline-flex items-center border-b border-neutral-400 pb-1 text-lg transition-colors hover:border-neutral-800"
-              target="_blank"
-            >
-              note
-            </a>
-            <a
-              href="https://www.instagram.com/caffeastore2019"
-              className="inline-flex items-center border-b border-neutral-400 pb-1 text-lg transition-colors hover:border-neutral-800"
-              target="_blank"
-            >
-              instagram
-            </a>
-          </div>
-        </div>
+          <nav aria-label="ソーシャルメディア">
+            <div className="flex flex-col gap-4 pt-6 md:flex-row md:gap-6">
+              <a
+                href="https://note.com/caffeastore"
+                className="inline-flex items-center border-b border-neutral-400 pb-1 text-lg transition-colors hover:border-neutral-800"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                note
+              </a>
+              <a
+                href="https://www.instagram.com/caffeastore2019"
+                className="inline-flex items-center border-b border-neutral-400 pb-1 text-lg transition-colors hover:border-neutral-800"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                instagram
+              </a>
+            </div>
+          </nav>
+        </address>
       </div>
 
       <footer className="mt-16 text-center">

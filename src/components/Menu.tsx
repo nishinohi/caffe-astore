@@ -106,19 +106,22 @@ export default function Menu() {
             <p className="sr-only">メニューの読み込みに失敗しました</p>
           </div>
         )}
-        <div className="flex justify-center space-x-6 md:space-x-12">
-          {menuCategories.map((category, index) => (
-            <button
-              key={category.id}
-              onClick={() => handleCategoryChange(index)}
-              className={`font-josefin border-b-2 text-lg transition-colors duration-300 md:text-xl lg:text-2xl ${
-                selectedCategory === index ? 'border-foreground' : 'hover:border-foreground border-transparent'
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
-        </div>
+        <nav aria-label="メニューカテゴリー">
+          <div className="flex justify-center space-x-6 md:space-x-12">
+            {menuCategories.map((category, index) => (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryChange(index)}
+                className={`font-josefin border-b-2 text-lg transition-colors duration-300 md:text-xl lg:text-2xl ${
+                  selectedCategory === index ? 'border-foreground' : 'hover:border-foreground border-transparent'
+                }`}
+                aria-current={selectedCategory === index ? 'true' : 'false'}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </nav>
       </div>
 
       {/* Menu Content */}
@@ -134,7 +137,7 @@ export default function Menu() {
             }}
           >
             <CarouselContent>
-              {currentCategory?.items.map((item, index) => (
+              {currentCategory?.items.map((item) => (
                 <CarouselItem key={item.id}>
                   <div className="aspect-square overflow-hidden rounded-4xl">
                     <img
@@ -167,10 +170,10 @@ export default function Menu() {
         {/* Description */}
         <div className="flex flex-col space-y-6 py-4 md:h-full lg:space-y-8">
           {/* Title */}
-          <div className="space-y-2">
+          <header className="space-y-2">
             <h3 className="font-josefin font text-2xl">{menuData?.name}</h3>
             <p className="font-josefin text-base">{menuData?.nameTranslateJp}</p>
-          </div>
+          </header>
 
           {/* Description Content */}
           <div className="relative md:grow">
@@ -193,9 +196,9 @@ export default function Menu() {
                   {/* Ingredients */}
                   {menuData.ingredients && menuData.ingredients.length > 0 && (
                     <section className="border-foreground relative rounded-md border pt-5 pr-6 pb-4 pl-8">
-                      <h3 className="bg-background absolute -top-3.5 left-4 inline-block px-2 text-base">
+                      <h4 className="bg-background absolute -top-3.5 left-4 inline-block px-2 text-base">
                         Ingredients
-                      </h3>
+                      </h4>
                       <ul className="space-y-1.5">
                         {menuData.ingredients.map((ingredient, index) => (
                           <li key={index} className="flex items-center space-x-2">
