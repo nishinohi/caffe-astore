@@ -129,6 +129,15 @@
     font-family: 'Josefin Sans', sans-serif;
   }
 
+  .writing {
+    writing-mode: vertical-rl;
+  }
+  @media (width >= 48rem /* 768px */) {
+    .writing {
+      writing-mode: horizontal-tb;
+    }
+  }
+
   /* 自動言語判定（英語文字が含まれる場合） */
   :lang(en),
   [lang='en'] {

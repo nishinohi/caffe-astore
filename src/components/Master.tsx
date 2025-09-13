@@ -1,10 +1,10 @@
 export default function Master() {
   return (
     <article className="relative bg-emerald-800 pb-20">
-      <div className="font-josefin sticky top-0 cursor-default px-2 py-6 text-[21vw] text-green-900 md:px-6 md:py-12">
-        <p className="leading-[0.9] blur-xs md:blur-lg">MODERN</p>
-        <p className="leading-[0.9] blur-xs md:pl-28 md:blur-lg">CLASSIC</p>
-        <p className="leading-[0.9] blur-xs md:blur-lg">ASTORE</p>
+      <div className="font-josefin writing sticky top-0 cursor-default px-6 py-2 text-[30vw] text-green-900 md:px-6 md:py-12 md:text-[21vw]">
+        <p className="leading-[0.9] blur-sm md:blur-lg">MODERN</p>
+        <p className="leading-[0.9] blur-sm md:pl-28 md:blur-lg">CLASSIC</p>
+        <p className="leading-[0.9] blur-sm md:blur-lg">ASTORE</p>
       </div>
       <section className="relative z-10 flex flex-col space-y-16 md:mt-32 md:pb-36">
         <img
