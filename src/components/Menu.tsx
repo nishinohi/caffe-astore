@@ -89,7 +89,7 @@ export default function Menu() {
   }
 
   return (
-    <section className="mx-auto min-h-[110vh] max-w-7xl px-4 py-20">
+    <section className="mx-auto min-h-[100vh] max-w-7xl px-4 pt-20">
       <div className="mb-16 text-center">
         <h2 className="font-josefin mb-8 text-3xl md:mb-16 md:text-4xl">Menu</h2>
         {isLoadingStructure && (
